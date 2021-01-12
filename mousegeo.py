@@ -14,8 +14,5 @@ if __name__ == '__main__':
     mouseInit()
     t.sleep(0.2)
     p.click(button='left')
-    hp = p.locateCenterOnScreen('HP.PNG', confidence=0.9)
-    p.moveTo(x=hp[0]+160,y=hp[1],duration=0.1)
-    screen = imgGrab.grab()  # 색상 추출
-    print(screen.getpixel(p.position()))
-
+    p.hotkey('ctrl','1')
+    p.keyUp('d')

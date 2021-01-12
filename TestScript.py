@@ -22,26 +22,51 @@ def mouseInit(): # 마우스 중앙 초기화
     # print(screen.getpixel(p.position()))
 
 def targetChecker():
+    mon = p.locateCenterOnScreen('mon.PNG',confidence=0.9)
+    if not mon:
+        t.sleep(0.2)
+        p.keyDown('ctrl')
+        t.sleep(0.2)
+        p.keyDown('1')
+        p.sleep(0.2)
+        p.keyUp('ctrl')
+        t.sleep(0.2)
+        p.keyUp('14')
+        t.sleep(4)
     p.hotkey('tab')
     try:
         target = p.locateCenterOnScreen('target.PNG', confidence=0.9)  # 이미지를 통한 좌표 탐색
         if target:
             attack()
+        else:
+            p.keyDown('d')
+            t.sleep(0.5)
+            p.keyUp('d')
     except:
+        #p.hotkey('d')
         targetChecker()
 
 def attack():
-    t.sleep(0.1)
-    p.hotkey('6')
     t.sleep(0.2)
+    p.hotkey('7')
+    t.sleep(3.3)
+    p.hotkey('6')
+    t.sleep(0.6)
+    p.hotkey('5')
+    t.sleep(0.6)
     p.hotkey('4')
-    t.sleep(1)
+    t.sleep(1.2)
+    p.hotkey('9')
+    t.sleep(0.6)
+    p.hotkey('3')
+    t.sleep(3)
+    p.hotkey('3')
+    t.sleep(0.4)
+    p.hotkey('8')
+    t.sleep(0.4)
     p.hotkey('2')
     t.sleep(0.5)
-    p.hotkey('3')
-    t.sleep(3.2)
-    p.hotkey('3')
-    t.sleep(0.3)
+    p.hotkey('2')
 
     monsterhp = p.locateCenterOnScreen('monsterhp.PNG', confidence=0.9)  # 이미지를 통한 좌표 탐색
     print(monsterhp)
@@ -73,7 +98,7 @@ def healthChecker():
     t.sleep(0.2)
     hpStatus = imgGrab.grab().getpixel(p.position()) # 색상 추출
     print(hpStatus)
-    if hpStatus[0] != 205:
+    if hpStatus[0] != 210:
         print('!!')
         p.hotkey(',')
         t.sleep(10)
@@ -87,7 +112,7 @@ def mpChecker():
     t.sleep(0.2)
     mpStatus = imgGrab.grab().getpixel(p.position())  # 색상 추출
     print(mpStatus)
-    if mpStatus[0] != 22:
+    if mpStatus[0] != 25:
         print('!!')
         p.hotkey(',')
         t.sleep(10)
